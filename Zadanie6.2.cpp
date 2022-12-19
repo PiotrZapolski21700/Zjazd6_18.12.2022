@@ -27,27 +27,28 @@ int main() {
         cin >> polishgrades[i];
 
     }
-
-
-
-    cout << "Wybierz ucznia:" << endl << "==================" << endl;
-
-    for(int i=0; i<6; i++){
-        cout << i+1 << ". " << students[i] << endl;
-    }
-    cout << "7. Wyjscie" << endl;
-
+    
     int student = 0;
-    int operation = 0;
+    int operation;
+    double average;
 
-    for(int i=1; i>0; i++){
+    while(student != 7){
+        cout << "Wybierz ucznia:" << endl << "==================" << endl;
+
+        for(int i=0; i<6; i++){
+            cout << i+1 << ". " << students[i] << endl;
+        }
+        cout << "7. Wyjscie" << endl;
+        
         cin >> student;
 
-        if(student!=1 && student!=2 && student!=3 && student!=4 && student!=5 && student!=6){
+        if(student!=1 && student!=2 && student!=3 && student!=4 && student!=5 && student!=6 && student!=7){
             cout << "Nie ma takiego ucznia!";
         }
+        else if(student == 7){
+            cout << "Do widzenia";
+        }
         else{
-            cout << endl << students[student-1] << endl;
             cout << "Wybierz przedmiot: " << endl << "==================" << endl;
 
             cout  << "1. Informatyka" << endl  << "2. Matematyka" << endl  << "3. Biologia" << endl  << "4. J.Polski" << endl  << "5. Srednia" << endl;
@@ -56,19 +57,20 @@ int main() {
 
             switch(operation){
                 case 1:
-                    cout << "Informatyka - " << itgrades[student-1];
+                    cout << "Uczen - " << students[student-1] << " Ocena z informatyki: " << itgrades[student-1] << endl;
                     break;
                 case 2:
-                    cout << "Matematyka - " << mathgrades[student-1];
+                    cout << "Uczen - " << students[student-1] << " Ocena z matematyki: " << mathgrades[student-1] << endl;
                     break;
                 case 3:
-                    cout << "Biologia - " << biologygrades[student-1];
+                    cout << "Uczen - " << students[student-1] << " Ocena z biologii: " << biologygrades[student-1] << endl;
                      break;
                 case 4:
-                    cout << "J.Polski - " << polishgrades[student-1];
+                    cout << "Uczen - " << students[student-1] << " Ocena z j.polskiego: " << polishgrades[student-1] << endl;
                     break;
                 case 5:
-                    cout << "Srednia - " << (itgrades[student-1] + mathgrades[student-1] + biologygrades[student-1] + polishgrades[student-1]) / 4;
+                    average = ((double)itgrades[student-1] + (double)mathgrades[student-1] + (double)biologygrades[student-1] + (double)polishgrades[student-1]) / 4;
+                    cout << "Uczen - " << students[student-1] << " Srednia: " << average << endl;
                     break;
                 default:
                     cout << "Nieprawidlowy numer przedmiotu!";
