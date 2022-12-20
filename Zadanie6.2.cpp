@@ -1,51 +1,57 @@
 #include <iostream>
+#include <vector>
 using namespace std;
+
+struct student {
+        string name;
+        int itgrade;
+        int mathgrade;
+        int biologygrade;
+        int polishgrade;
+        double average;
+};
 
 int main() {
 
-    string students[6];
-    int itgrades[6];
-    int mathgrades[6];
-    int biologygrades[6];
-    int polishgrades[6];
+    vector<student> students(6);
 
     //i as student id
     for(int i=0; i<6; i++){
         cout << "Podaj imie ucznia nr " << i+1 << ":";
-        cin >> students[i];
+        cin >> students[i].name;
 
         cout << endl << "Podaj ocene z informatyki: ";
-        cin >> itgrades[i];
+        cin >> students[i].itgrade;
 
         cout << endl << "Podaj ocene z matematyki: ";
-        cin >> mathgrades[i];
+        cin >> students[i].mathgrade;
 
         cout << endl << "Podaj ocene z biologi: ";
-        cin >> biologygrades[i];
+        cin >> students[i].biologygrade;
 
         cout << endl << "Podaj ocene z j.Polskiego: ";
-        cin >> polishgrades[i];
-
+        cin >> students[i].polishgrade;
+        
+        students[i].average = ((double)students[i].itgrade + (double)students[i].mathgrade + (double)students[i].biologygrade + (double)students[i].polishgrade) / 4;
     }
     
-    int student = 0;
+    int studentnum = 0;
     int operation;
-    double average;
 
-    while(student != 7){
+    while(studentnum != 7){
         cout << "Wybierz ucznia:" << endl << "==================" << endl;
 
         for(int i=0; i<6; i++){
-            cout << i+1 << ". " << students[i] << endl;
+            cout << i+1 << ". " << students[i].name << endl;
         }
         cout << "7. Wyjscie" << endl;
         
-        cin >> student;
+        cin >> studentnum;
 
-        if(student!=1 && student!=2 && student!=3 && student!=4 && student!=5 && student!=6 && student!=7){
+        if(studentnum!=1 && studentnum!=2 && studentnum!=3 && studentnum!=4 && studentnum!=5 && studentnum!=6 && studentnum!=7){
             cout << "Nie ma takiego ucznia!";
         }
-        else if(student == 7){
+        else if(studentnum == 7){
             cout << "Do widzenia";
         }
         else{
@@ -57,23 +63,22 @@ int main() {
 
             switch(operation){
                 case 1:
-                    cout << "Uczen - " << students[student-1] << " Ocena z informatyki: " << itgrades[student-1] << endl;
+                    cout << "Uczen - " << students[studentnum-1].name << " Ocena z informatyki: " << students[studentnum-1].itgrade << endl;
                     break;
                 case 2:
-                    cout << "Uczen - " << students[student-1] << " Ocena z matematyki: " << mathgrades[student-1] << endl;
+                    cout << "Uczen - " << students[studentnum-1].name << " Ocena z matematyki: " << students[studentnum-1].mathgrade << endl;
                     break;
                 case 3:
-                    cout << "Uczen - " << students[student-1] << " Ocena z biologii: " << biologygrades[student-1] << endl;
+                    cout << "Uczen - " << students[studentnum-1].name << " Ocena z biologii: " << students[studentnum-1].biologygrade << endl;
                      break;
                 case 4:
-                    cout << "Uczen - " << students[student-1] << " Ocena z j.polskiego: " << polishgrades[student-1] << endl;
+                    cout << "Uczen - " << students[studentnum-1].name << " Ocena z j.polskiego: " << students[studentnum-1].polishgrade << endl;
                     break;
                 case 5:
-                    average = ((double)itgrades[student-1] + (double)mathgrades[student-1] + (double)biologygrades[student-1] + (double)polishgrades[student-1]) / 4;
-                    cout << "Uczen - " << students[student-1] << " Srednia: " << average << endl;
+                    cout << "Uczen - " << students[studentnum-1].name << " Srednia: " << students[studentnum-1].average << endl;
                     break;
                 default:
-                    cout << "Nieprawidlowy numer przedmiotu!";
+                    cout << "Nieprawidlowy numer przedmiotu!" << endl;
             }
         }
     }
